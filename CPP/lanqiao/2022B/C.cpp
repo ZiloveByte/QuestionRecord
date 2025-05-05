@@ -1,31 +1,15 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-
-int main() {
-	long long a, b, n;
-	cin >> a >> b >> n;
-	long long total_week = 5*a + 2*b;
-	long long days = 0;
-	if (total_week > 0) {
-		long long weeks = n / total_week;
-		days += weeks * 7;
-		long long remain = n % total_week;
-		if (remain == 0) {
-			cout << days;
-			return 0;
-		}
-		n = remain;
-	}
-	for (int i = 0; i < 5; ++i) {
-		if (n <= 0) break;
-		days++;
-		n -= a;
-	}
-	for (int i = 0; i < 2; ++i) {
-		if (n <= 0) break;
-		days++;
-		n -= b;
-	}
-	cout << days;
-	return 0;
+int main(){
+  long long a,b,n,cnt=0;
+  cin>>a>>b>>n;
+  int mark=1;
+  while(n>0){
+    if(mark<=5&&mark>=1)n-=a,cnt++;
+    if(mark<=7&&mark>=6)n-=b,cnt++;
+    mark++;
+    if(mark==8) mark=1;
+  }
+  cout<<cnt;
+  return 0;
 }
